@@ -1,3 +1,5 @@
+package org.example;
+
 import org.example.util.CustomArrayList;
 import org.junit.Test;
 
@@ -15,5 +17,6 @@ public class CheckCustomArrayList {
             customArrayList.add(new CustomArrayList());
 
         }
+
     }
 }
