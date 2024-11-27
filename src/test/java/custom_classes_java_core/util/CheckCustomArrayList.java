@@ -1,38 +1,16 @@
-package org.custom_arraylist.util;
+package custom_classes_java_core.util;
 
+import custom_classes_java_core.CheckClassByQuickSort;
 import org.junit.Test;
 
-import java.util.Comparator;
+import java.util.Random;
 
 
-public class CheckCustomArrayList {
-
-
-    @Test
-    public void checkQuickSortString() {
-        CustomArrayList<String> list = new CustomArrayList<>();
-        list.add("Ivan");
-        list.add("Aleks");
-        list.add("Alex");
-        list.add("Danila");
-        list.add("Helen");
-        Sorted.quickSort(list);
-        System.out.println(list);
-    }
-
-    @Test
-    public void checkQuickSortInteger() {
-        CustomArrayList<Integer> list = new CustomArrayList<>();
-        for (int i = 9; i > 0; i--) {
-            list.add(i);
-        }
-        Sorted.quickSort(list, Comparator.naturalOrder());
-        System.out.println(list);
-    }
+public class CheckCustomArrayList<T> {
 
     @Test
     public void checkGetElement() {
-        CustomArrayList customArrayList = fullArrayList(10000);
+        CustomArrayList<T> customArrayList = fullArrayList(10000);
         customArrayList.get(1000);
     }
 
@@ -56,7 +34,7 @@ public class CheckCustomArrayList {
 
     @Test
     public void checkAddInsert() {
-        CustomArrayList customArrayList = fullArrayList(5);
+        CustomArrayList<T> customArrayList = fullArrayList(5);
         System.out.println(customArrayList);
         customArrayList.add(4, "Alex");
         System.out.println(customArrayList);
@@ -64,14 +42,14 @@ public class CheckCustomArrayList {
     }
 
     @Test
-    public void checkAdd() {
-        CustomArrayList customArrayList = fullArrayList(200000);
+    public  void checkAdd() {
+        CustomArrayList<T> customArrayList = fullArrayList(200000);
         System.out.println(customArrayList);
     }
 
     @Test
-    public void checkRemove() {
-        CustomArrayList customArrayList = fullArrayList(10000);
+    public  void checkRemove() {
+        CustomArrayList<T> customArrayList = fullArrayList(10000);
         customArrayList.remove(2);
     }
 
@@ -95,7 +73,7 @@ public class CheckCustomArrayList {
 
     @Test
     public void checkClear() {
-        CustomArrayList customArrayList = fullArrayList(10000);
+        CustomArrayList<T> customArrayList = fullArrayList(10000);
         customArrayList.clear();
         System.out.println(customArrayList);
     }
@@ -103,10 +81,10 @@ public class CheckCustomArrayList {
     @Test
     public void checkSet() {
         try {
-            CustomArrayList customArrayList = fullArrayList(20);
+            CustomArrayList<T> customArrayList = fullArrayList(20);
             customArrayList.set(2, "tes10");
             customArrayList.set(3, 56);
-            customArrayList.set(100, new CustomArrayList());
+            customArrayList.set(100, new CustomArrayList<T>());
             System.out.println(customArrayList);
         } catch (IndexOutOfBoundsException e) {
             System.out.println(e.getMessage());
@@ -115,13 +93,15 @@ public class CheckCustomArrayList {
     }
 
 
-    public CustomArrayList fullArrayList(int countIteration) {
-        CustomArrayList customArrayList = new CustomArrayList();
+    public CustomArrayList<T> fullArrayList(int countIteration) {
+        CustomArrayList<T> customArrayList = new CustomArrayList<>();
+        Random random = new Random();
         for (int i = 0; i < countIteration; i++) {
-            customArrayList.add(i);
+            customArrayList.add(random.nextInt(10000));
             customArrayList.add("test");
-            customArrayList.add(new CustomArrayList());
+            customArrayList.add(new CheckClassByQuickSort(random.nextInt(10000)));
         }
         return customArrayList;
     }
+
 }

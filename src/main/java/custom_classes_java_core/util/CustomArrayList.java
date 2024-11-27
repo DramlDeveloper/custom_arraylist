@@ -1,16 +1,16 @@
-package org.custom_arraylist.util;
+package custom_classes_java_core.util;
 
 
 import java.util.Arrays;
 
-import static org.custom_arraylist.util.ConstantValueUtil.*;
+import static custom_classes_java_core.util.ConstantValueUtil.*;
 
 /**
  * Динамически массив с различными вспомогательными методами
  *
  * @param <T> тип элементов в этом списке
  */
-public class CustomArrayList<T>{
+public class CustomArrayList<T> {
 
     private T[] array;
     private int size = 0;
@@ -37,7 +37,7 @@ public class CustomArrayList<T>{
     }
 
     /**
-     *  Метод позвозяющий добавить элемент по индексу не заменяя
+     *  Метод позволяющий добавить элемент по индексу не заменяя
      *  имеющийся в массиве элемент
      *
      * @param index индекс в массиве, по которому добавляется элемент
@@ -54,10 +54,10 @@ public class CustomArrayList<T>{
     }
 
     /**
-     * Метод позвозяющий удалить элемент по индексу с изменением
+     * Метод позволяющий удалить элемент по индексу с изменением
      * размера массива
      *
-     * @param index индекс в массиве, по которому удалется элемент
+     * @param index индекс в массиве, по которому удаляется элемент
      */
     public void remove(int index) {
         ValidationOutIndex.validation(index, size());

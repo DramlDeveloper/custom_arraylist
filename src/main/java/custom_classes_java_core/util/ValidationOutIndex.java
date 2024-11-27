@@ -1,10 +1,10 @@
-package org.custom_arraylist.util;
+package custom_classes_java_core.util;
+
+
 
 /**
- *
+ * Обработчик исключений
  */
-
-
 public final class ValidationOutIndex {
 
     private ValidationOutIndex() {
@@ -15,6 +15,6 @@ public final class ValidationOutIndex {
         if (index < 0)
             throw new IndexOutOfBoundsException("IndexException: значение индекса не может быть меньше 0");
         if (index >= size)
-            throw new IndexOutOfBoundsException("IndexException: значение индекса превыщает размер масива");
+            throw new IndexOutOfBoundsException("IndexException: значение индекса превышает размер массива");
     }
 }

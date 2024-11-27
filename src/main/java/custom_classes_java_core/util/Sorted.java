@@ -1,4 +1,4 @@
-package org.custom_arraylist.util;
+package custom_classes_java_core.util;
 
 import java.util.Comparator;
 
