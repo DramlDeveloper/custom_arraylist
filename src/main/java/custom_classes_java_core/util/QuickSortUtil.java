@@ -6,9 +6,9 @@ import java.util.Comparator;
  * Динамически класс, в котором реализованы методы для быстрой сортировки
  * Среднее время работы быстрой сортировки составляет O(n log n)
  */
-public final class Sorted {
+public final class QuickSortUtil {
 
-    private Sorted() {
+    private QuickSortUtil() {
         throw new RuntimeException();
     }
 

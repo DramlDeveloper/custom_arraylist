@@ -3,8 +3,6 @@ package custom_classes_java_core.util;
 
 import java.util.Arrays;
 
-import static custom_classes_java_core.util.ConstantValueUtil.*;
-
 /**
  * Динамически массив с различными вспомогательными методами
  *
@@ -14,6 +12,8 @@ public class CustomArrayList<T> {
 
     private T[] array;
     private int size = 0;
+
+    public static final int DEFAULT_CAPACITY = 10;
 
     public CustomArrayList() {
         array = (T[]) new Object[DEFAULT_CAPACITY];
@@ -60,7 +60,7 @@ public class CustomArrayList<T> {
      * @param index индекс в массиве, по которому удаляется элемент
      */
     public void remove(int index) {
-        ValidationOutIndex.validation(index, size());
+        validation(index, size());
         int s = size - index - 1;
         if (s > 0) {
             System.arraycopy(array, index + 1, array, index, s);
@@ -74,7 +74,7 @@ public class CustomArrayList<T> {
      * @param index индекс возвращаемого элемента из массива
      */
     public T get(int index)  {
-        ValidationOutIndex.validation(index, size());
+        validation(index, size());
         return array[index];
     }
 
@@ -85,7 +85,7 @@ public class CustomArrayList<T> {
      * @param value новое значение элемента массива
      */
     public void set(int index, Object value)  {
-        ValidationOutIndex.validation(index, size());
+        validation(index, size());
         array[index] = (T) value;
     }
 
@@ -98,19 +98,15 @@ public class CustomArrayList<T> {
     }
 
     /**
-     * Переопределенный метод класса {@link Object}
+     * Обработка исключения при выходе за пределы размера массива
+     * @param index - запрашиваемы индекс в массиве
+     * @param size - размер массива
      */
-    public String toString() {
-        if (array.length - 1 == -1)
-            return "[]";
-        StringBuilder b = new StringBuilder();
-        b.append('[');
-        for (int i = 0; i < size; i++) {
-            b.append(array[i]);
-            if (i == size - 1)
-                return b.append(']').toString();
-            b.append(", ");
-        }
-        return b.append(']').toString();
+    public void validation(int index, int size) {
+        if (index < 0)
+            throw new IndexOutOfBoundsException("IndexException: значение индекса не может быть меньше 0");
+        if (index >= size)
+            throw new IndexOutOfBoundsException("IndexException: значение индекса превышает размер массива");
     }
+
 }

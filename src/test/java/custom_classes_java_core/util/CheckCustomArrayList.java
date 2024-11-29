@@ -5,8 +5,35 @@ import org.junit.Test;
 
 import java.util.Random;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CheckCustomArrayList<T> {
+
+    @Test
+    public void checkExceptionIndexOut1() {
+        Throwable throwable = assertThrows(
+                Throwable.class,
+                () -> {
+                    fullArrayList(10).get(-1);
+                }
+        );
+        assertEquals(IndexOutOfBoundsException.class, throwable.getClass());
+    }
+
+    @Test
+    public void checkExceptionIndexOut() {
+        Throwable throwable = assertThrows(
+                Throwable.class,
+                () -> {
+                    fullArrayList(10).get(-1);
+                    fullArrayList(10).get(100);
+                    fullArrayList(10).remove(50);
+                    fullArrayList(10).remove(-1);
+                }
+        );
+        assertEquals(IndexOutOfBoundsException.class, throwable.getClass());
+    }
 
     @Test
     public void checkGetElement() {
@@ -15,81 +42,34 @@ public class CheckCustomArrayList<T> {
     }
 
     @Test
-    public void checkExceptionGetElementOutIncrement() {
-        try {
-            fullArrayList(10).get(200);
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    @Test
-    public void checkExceptionGetElementOutDecrement() {
-        try {
-            fullArrayList(10).get(-1);
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    @Test
     public void checkAddInsert() {
         CustomArrayList<T> customArrayList = fullArrayList(5);
-        System.out.println(customArrayList);
         customArrayList.add(4, "Alex");
-        System.out.println(customArrayList);
-
     }
 
     @Test
-    public  void checkAdd() {
+    public void checkAdd() {
         CustomArrayList<T> customArrayList = fullArrayList(200000);
-        System.out.println(customArrayList);
     }
 
     @Test
-    public  void checkRemove() {
+    public void checkRemove() {
         CustomArrayList<T> customArrayList = fullArrayList(10000);
         customArrayList.remove(2);
-    }
-
-    @Test
-    public void checkExceptionRemoveOutIncrement() {
-        try {
-            fullArrayList(1).remove(20);
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    @Test
-    public void checkExceptionRemoveOutDecrement() {
-        try {
-            fullArrayList(1).remove(-1);
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println(e.getMessage());
-        }
     }
 
     @Test
     public void checkClear() {
         CustomArrayList<T> customArrayList = fullArrayList(10000);
         customArrayList.clear();
-        System.out.println(customArrayList);
     }
 
     @Test
     public void checkSet() {
-        try {
             CustomArrayList<T> customArrayList = fullArrayList(20);
             customArrayList.set(2, "tes10");
             customArrayList.set(3, 56);
-            customArrayList.set(100, new CustomArrayList<T>());
-            System.out.println(customArrayList);
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println(e.getMessage());
-        }
-
+            customArrayList.set(10, new CustomArrayList<T>());
     }
 
 
@@ -103,5 +83,4 @@ public class CheckCustomArrayList<T> {
         }
         return customArrayList;
     }
-
 }

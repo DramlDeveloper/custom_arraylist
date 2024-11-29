@@ -16,9 +16,7 @@ public class CheckQuickSort {
         list.add("Alex");
         list.add("Danila");
         list.add("Helen");
-
-        Sorted.quickSort(list);
-        System.out.println(list);
+        QuickSortUtil.quickSort(list);
     }
 
     @Test
@@ -27,8 +25,7 @@ public class CheckQuickSort {
         for (int i = 9; i > 0; i--) {
             list.add(i);
         }
-        Sorted.quickSort(list, Comparator.naturalOrder());
-        System.out.println(list);
+        QuickSortUtil.quickSort(list, Comparator.naturalOrder());
     }
 
     @Test
@@ -39,8 +36,7 @@ public class CheckQuickSort {
             int count  = value.nextInt(30000);
             list.add(new CheckClassByQuickSort(count));
         }
-
-        Sorted.quickSort(list, Comparator.comparing(CheckClassByQuickSort::getCount));
-        System.out.println(list);
+        QuickSortUtil.quickSort(list, Comparator.comparing(CheckClassByQuickSort::getCount));
+        QuickSortUtil.quickSort(list, Comparator.comparing(CheckClassByQuickSort::getName));
     }
 }
