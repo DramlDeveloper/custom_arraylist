@@ -11,24 +11,23 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class CheckCustomArrayList<T> {
 
     @Test
-    public void checkExceptionIndexOut1() {
+    public void checkExceptionIndexOutIncrement() {
         Throwable throwable = assertThrows(
                 Throwable.class,
                 () -> {
-                    fullArrayList(10).get(-1);
+                    fullArrayList(10).get(100);
+                    fullArrayList(10).remove(100);
                 }
         );
         assertEquals(IndexOutOfBoundsException.class, throwable.getClass());
     }
 
     @Test
-    public void checkExceptionIndexOut() {
+    public void checkExceptionIndexOutDecrement() {
         Throwable throwable = assertThrows(
                 Throwable.class,
                 () -> {
                     fullArrayList(10).get(-1);
-                    fullArrayList(10).get(100);
-                    fullArrayList(10).remove(50);
                     fullArrayList(10).remove(-1);
                 }
         );
